@@ -114,7 +114,9 @@ class _ReorderableScrollingListenerState
       _scrollCheckTimer = Timer.periodic(
         const Duration(milliseconds: 10),
         (timer) {
-          if (widget.isDragging) {
+           if (widget.isDragging &&
+              widget.scrollController != null &&
+              widget.scrollController!.hasClients) {
             _checkToScrollWhileDragging(
               dragPosition: position,
               scrollDirection: widget.scrollController!.position.axis,
